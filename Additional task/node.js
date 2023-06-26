@@ -1,4 +1,4 @@
-function randomNum(min, max) {
+function getRandomNum(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     let res = Math.floor(Math.random() * (max - min) + min);
@@ -6,7 +6,7 @@ function randomNum(min, max) {
     return res;
 }
 
-function promiseRes (result) {
+function getTimeoutSquareNum (result) {
     return new Promise((resolve) => {
         setTimeout(() => {
             result = Math.pow(result, 2);
@@ -18,14 +18,14 @@ function promiseRes (result) {
 
 new Promise(function(resolve) {
 
-    resolve(randomNum(2, 11));
+    resolve(getRandomNum(2, 11));
   
 })
     
 .then(function(result) {
-    return promiseRes(result);
+    return getTimeoutSquareNum(result);
 })
 
 .then(function(result) {
-    return promiseRes(result);
+    return getTimeoutSquareNum(result);
 })
