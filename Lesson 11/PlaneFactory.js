@@ -7,10 +7,10 @@ class PlaneFactory {
         passenger: "PASSENGER"
     }
 
-    createPlane (type, name) {
+    createPlane(type, name) {
         switch (type) {
-            case "CARGO": return new CargoPlane(name);
-            case "PASSENGER": return new PassengerPlane(name);
+            case this.types.cargo: return new CargoPlane(name);
+            case this.types.passenger: return new PassengerPlane(name);
             default: return null;
         }
     }
