@@ -23,7 +23,7 @@ describe('Chromedriver basic ui tests', function () {
         driver.get('https://chromedriver.chromium.org/home');
         await driver.findElement(By.xpath('//nav[@id="WDxLfe"]/ul/li[3]//a')).click();
         const extencionsTitle = driver.wait(until.elementLocated(By.xpath('//h1[@id="h.p_ID_13"]/span')));
-        new Actions(driver).doubleClick(extencionsTitle).perform();
+        await driver.executeScript("arguments[0].style.border='3px solid red'", extencionsTitle);
         expect(await extencionsTitle.getText()).to.equal('Chrome Extensions');
     })
 })
