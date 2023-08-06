@@ -17,6 +17,11 @@ class Header {
     return $('//button[@class="DocSearch DocSearch-Button"]');
   }
 
+  async clickDocsButton() {
+    await this.docsButton.waitForClickable();
+    await this.docsButton.click();
+  }
+
   async clickSearchButton() {
     await this.searchButton.waitForClickable();
     await this.searchButton.click();

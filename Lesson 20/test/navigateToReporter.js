@@ -1,14 +1,14 @@
 const { expect } = require('chai');
-const MainPage = require('../pageobjects/mainPage');
-const DocsPage = require('../pageobjects/docsPage');
+const mainPage = require('../pageobjects/mainPage');
+const docsPage = require('../pageobjects/docsPage');
 const header = require('../pageobjects/components/header');
 const allureReporterPage = require('../pageobjects/allureReporterPage');
+const docsPage = new docsPage();
 
 describe('Webdriver.io ui navigate to reporter', function () {
   it('Should correctly navigate to Allure Reporter page', async () => {
-    const docsPage = new DocsPage();
-    await MainPage.navigate('https://webdriver.io/');
-    await header.docsButton.click();
+    await mainPage.navigate('https://webdriver.io/');
+    await header.clickDocsButton();
     await docsPage.clickReporterDropdownButton();
     await docsPage.clickAllureReporterButton();
     expect(await allureReporterPage.pageHeadline.getText()).to.equal('Allure Reporter');
