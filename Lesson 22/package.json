@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prewdio": "rmdir /s /q allure-report && rmdir /s /q allure-results",
     "wdio": "wdio run ./wdio.conf.js",
-    "postwdio": "npx allure generate && npx allure open",
+    "postwdio": "npx allure generate && node cucumber-html-reporter-settings.js && npx allure open",
     "lint": "eslint --debug ./ --fix",
     "lint:write": "eslint ./ --fix && npm run pretty",
     "pretty": "prettier --write */**/*.js"
