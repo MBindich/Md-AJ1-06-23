@@ -25,6 +25,10 @@ class LoginPopup {
         return $('//*[@id="phoneForm"]/button[@value="login"]');
     }
 
+    get phoneNumberInputField() {
+        return $('//*[@id="formInputLoginPhone"]');
+    }
+
     get loginFormErrorNotification() {
         return $('//*[@id="loginForm"]//*[@id="test"]//div[@class="i-popover__line"]');
     }
@@ -61,6 +65,19 @@ class LoginPopup {
     async clickLoginByMailButton() {
         await this.loginByEMailButton.waitForClickable();
         await this.loginByEMailButton.click();
+    }
+
+    async loginByPhone(phoneNumber) {
+        await this.clickLoginByPhoneButton();
+        await this.phoneNumberInputField.addValue(phoneNumber);
+        await this.clickSendSMSButton();
+    }
+
+    async loginByEMail(mail, password) {
+        await this.clickLoginByMailButton();
+        await this.sendTextToEmailInput(mail);
+        await this.sendTextToPasswordInput(password);
+        await this.clickLoginButton();
     }
 }
 
