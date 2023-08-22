@@ -4,4 +4,4 @@ class MainPage extends BasePage {
     
 }
 
-module.exports = new BasePage;
+module.exports = new MainPage;

@@ -9,6 +9,33 @@ class TopPanel {
         return $('//*[@class="top-panel__userbar__user__name__inner"]');
     }
 
+    get searchField() {
+        return $('//input[@id="top-s"]');
+    }
+
+    get searchButton() {
+        return $('//*[@id="search-top"]//button[@class="top-panel__search__btn"]');
+    }
+
+    get cartButton() {
+        return $('//*[@id="top-page"]//a[@class="top-panel__userbar__cart__item"]');
+    }
+
+    async clickOnCartButton() {
+        await this.cartButton.waitForClickable();
+        await this.cartButton.click();
+    }
+
+    async clickSearchButton() {
+        await this.searchButton.waitForClickable();
+        await this.searchButton.click();
+    }
+
+    async sendTextToSearchField(searchQuery) {
+        await this.searchField.waitForClickable();
+        await this.searchField.addValue(searchQuery);
+    }
+
     async clickLoginButton() {
         await this.loginButton.waitForClickable();
         await this.loginButton.click();
