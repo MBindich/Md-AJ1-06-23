@@ -21,6 +21,15 @@ class TopPanel {
         return $('//*[@id="top-page"]//a[@class="top-panel__userbar__cart__item"]');
     }
 
+    get profileButton() {
+        return $('//*[@class="top-panel__userbar__user__name__inner"]/ancestor::a');
+    }
+
+    async clickOnProfileButton() {
+        await this.profileButton.waitForClickable();
+        await this.profileButton.click();
+    }
+
     async clickOnCartButton() {
         await this.cartButton.waitForClickable();
         await this.cartButton.click();

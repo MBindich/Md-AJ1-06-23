@@ -8,10 +8,12 @@ const clearCart = require('../helpers/clearCart');
 const loginByMail = require('../helpers/login');
 
 const searchQuerys = ['Гарри Поттер', 'Игра престолов'];
+const mail = "mbindich@gmail.com";
+const psw = "Gfhjkz_OZ";
 
 describe('oz.by add to cart test', function() {
     this.beforeAll(async() => {
-        await loginByMail();
+        await loginByMail(mail, psw);
     })
     searchQuerys.forEach((query) => {
         it('should correctly add item to cart', async() => {

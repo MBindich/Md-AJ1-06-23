@@ -3,6 +3,9 @@ const mainPage = require('../pageobjects/mainPage');
 const topPanel = require('../pageobjects/components/topPanel');
 const loginPopup = require('../pageobjects/components/loginPopup');
 
+const mail = "mbindich@gmail.com";
+const psw = "Gfhjkz_OZ";
+
 describe('oz.by login tests', function () {
     this.beforeEach(async () => {
         await mainPage.navigate('https://oz.by/');
@@ -16,7 +19,7 @@ describe('oz.by login tests', function () {
     })
 
     it('Should get correct notification if wrong password sent', async () => {
-        await loginPopup.loginByEMail('mbindich@gmail.com', 'a');
+        await loginPopup.loginByEMail(mail, 'a');
         await loginPopup.loginFormErrorNotification.waitForDisplayed();
         expect(await loginPopup.loginFormErrorNotification.getText()).to.equal('Неверный пароль. Если вы потеряли или забыли пароль — восстановите его');
     })
@@ -28,7 +31,7 @@ describe('oz.by login tests', function () {
     })
 
     it('Should succesfully login with correct credentials', async () => {
-        await loginPopup.loginByEMail('mbindich@gmail.com', 'Gfhjkz_OZ');
+        await loginPopup.loginByEMail(mail, psw);
         await topPanel.username.waitForDisplayed()
         expect (await topPanel.username.isDisplayed()).to.equal(true);
     })
