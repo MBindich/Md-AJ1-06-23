@@ -6,6 +6,7 @@ async function loginByMail(mail, password) {
     await mainPage.navigate('https://oz.by/');
     await topPanel.clickLoginButton();
     await loginPopup.loginByEMail(mail, password);
+    return;
 }
 
 module.exports = loginByMail;

@@ -7,6 +7,7 @@ async function clearCart() {
     await checkoutPage.checkSelectAllItems();
     await checkoutPage.clickOnRemoveItemsButton();
     await checkoutPage.clickOnConfirmRemoveItemsButton();
+    return;
 }
 
 module.exports = clearCart;

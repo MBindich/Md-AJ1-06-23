@@ -6,7 +6,11 @@ class CheckoutPage extends BasePage {
     }
 
     get emptyCartNotification() {
-        return $('//*[@id="top-page"]//div[@class="i-textual__plain i-textual__plain_arrow i-textual__plain_limited"]');
+        return $('#top-page div.i-textual__plain');
+    }
+
+    getNthItem(n) {
+        return $(`//*[@id="goods-block"]/tbody/tr[${n+1}]`);
     }
 
     get selectAllItems() {
@@ -19,6 +23,10 @@ class CheckoutPage extends BasePage {
 
     get confirmRemoveItemsButton() {
         return $('#goods-block  button.remove-yes');
+    }
+
+    getNthItemCheckbox(n) {
+        return $(`//*[@id="goods-block"]/tbody/tr[${n+1}]//span[@class="i-checkbox i-checkbox_large"]`);
     }
 
     async checkSelectAllItems() {
@@ -34,6 +42,12 @@ class CheckoutPage extends BasePage {
     async clickOnConfirmRemoveItemsButton() {
         await this.confirmRemoveItemsButton.waitForClickable();
         await this.confirmRemoveItemsButton.click();
+    }
+
+    async clickOnNthItemCheckbox(n) {
+        const item = await this.getNthItemCheckbox(n);
+        await item.waitForClickable();
+        await item.click();
     }
 }
 
