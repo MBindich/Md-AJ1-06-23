@@ -4,8 +4,8 @@ const topPanel = require('../pageobjects/components/topPanel');
 const loginPopup = require('../pageobjects/components/loginPopup');
 const ProfilePage = require('../pageobjects/profilePage');
 const profilePage = new ProfilePage();
-const mail = "mbindich@gmail.com";
-const psw = "Gfhjkz_OZ";
+const mail = "";
+const psw = "";
 
 describe('oz.by login tests', function () {
     this.beforeEach(async () => {

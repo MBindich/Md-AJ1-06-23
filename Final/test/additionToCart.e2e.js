@@ -7,8 +7,8 @@ const checkoutPage = require('../pageobjects/checkoutPage');
 const clearCart = require('../helpers/clearCart');
 const loginByMail = require('../helpers/login');
 const searchQuerys = ['Гарри Поттер', 'Игра престолов'];
-const mail = "mbindich@gmail.com";
-const psw = "Gfhjkz_OZ";
+const mail = "";
+const psw = "";
 
 describe('oz.by add to cart test', function() {
     this.beforeAll(async() => {

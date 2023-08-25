@@ -6,11 +6,11 @@ const personalInfoPage = require('../pageobjects/personalInfoPage');
 const personalDataForOZandAY = require('../pageobjects/personalDataForOZandAY');
 const mainPage = require('../pageobjects/mainPage');
 const profilePage = new ProfilePage();
-const mail = "mbindich@gmail.com";
-const phone = "375293034637";
-const psw = "Gfhjkz_OZ";
+const mail = "";
+const phone = "";
+const psw = "";
 const testNickname = "TestNicknameForProject"
-const initialNickname = "MBlind"
+const initialNickname = ""
 
 describe('oz.by profile info tests', function () {
     this.beforeAll(async() => {

@@ -2,8 +2,8 @@ const {expect} = require('chai');
 const addItemToCart = require('../helpers/addItemToCart');
 const loginByMail = require('../helpers/login');
 const checkoutPage = require('../pageobjects/checkoutPage');
-const mail = "mbindich@gmail.com";
-const psw = "Gfhjkz_OZ";
+const mail = "";
+const psw = "";
 const searchQuerys = ['Гарри Поттер', 'Игра престолов'];
 
 describe('oz.by removal from cart tests', function() {
