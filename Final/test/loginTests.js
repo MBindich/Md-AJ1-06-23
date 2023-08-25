@@ -40,7 +40,7 @@ describe('oz.by login tests', function () {
         expect (await topPanel.username.isDisplayed()).to.equal(true);
     })
 
-    it('', async() => {
+    it('Should logout correctly', async() => {
         await topPanel.clickOnProfileButton();
         await profilePage.clickOnExitButton();
         await topPanel.loginButton.waitForDisplayed();
