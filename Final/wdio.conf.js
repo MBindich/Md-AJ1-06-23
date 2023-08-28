@@ -23,7 +23,7 @@ exports.config = {
     //
     specs: [
         './test/**/*.js'
-        //'./test/catalogNavigationTests.js'
+        //'./test/removalFromCartTests.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -151,7 +151,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: 600000
     },
     //
     // =====

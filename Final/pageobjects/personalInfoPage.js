@@ -1,4 +1,6 @@
 const ProfilePage = require('./profilePage');
+const profilePage = new ProfilePage();
+const topPanel = require("./components/topPanel");
 
 class PersonalInfoPage extends ProfilePage {
     get personalPersonalInfoButton() {
@@ -13,24 +15,12 @@ class PersonalInfoPage extends ProfilePage {
         return $('#top-page  button.button-small');
     }
 
-    async clickSaveChangesButton() {
-        await this.saveChangesButton.waitForClickable();
-        await this.saveChangesButton.click();
-    }
-
-    async sendTextToNicknameField(text) {
-        await this.nicknameField.waitForClickable();
-        await this.nicknameField.addValue(text);
-    }
-
-    async removeTextFromNicknameField() {
-        await this.nicknameField.waitForClickable();
-        await this.nicknameField.clearValue();
-    }
-
-    async clickOnPersonalPersonalInfoButton() {
-        await this.personalPersonalInfoButton.waitForClickable();
-        await this.personalPersonalInfoButton.click();
+    async changeNickname(newNickname) {
+        await this.clearTextFromElement(this.nicknameField);
+        await this.sendTextToElement(this.nicknameField, newNickname);
+        await this.clickOnElement(this.saveChangesButton);
+        await topPanel.clickOnElement(topPanel.profileButton);
+        await profilePage.usernameHeader.waitForDisplayed();
     }
 }
 

@@ -13,9 +13,9 @@ describe('oz.by search tests', function() {
 
     searchQuerys.forEach((query) => {
         it(`Search result item name should contain ${query}`, async() => {
-            await topPanel.sendTextToSearchField(query);
-            await topPanel.clickSearchButton();
-            await searchResultsPage.clickOnNthSearchResult(1);
+            await topPanel.sendTextToElement(topPanel.searchField, query)
+            await topPanel.clickOnElement(topPanel.searchButton);
+            await searchResultsPage.clickOnSearchResultByIndex(1);
             expect(await itemPage.itemName.getText()).to.contain(query);
         })
     })

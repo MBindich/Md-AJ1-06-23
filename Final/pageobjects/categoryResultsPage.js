@@ -17,8 +17,8 @@ class CategoryResultsPage extends BasePage {
         return $('#goods-table');
     }
 
-    getNthGoodName(n) {
-        return $(`//*[@id="goods-table"]/div[${n}]//*[@class="product-card__title"]`)
+    getGoodNameByIndex(index) {
+        return $(`//*[@id="goods-table"]/div[${index}]//*[@class="product-card__title"]`)
     }
 
     get showResultsButton() {
@@ -29,45 +29,27 @@ class CategoryResultsPage extends BasePage {
         return $$('//*[@id="goods-table"]/div//a');
     }
 
-    getNthGoodFromResults(n) {
-        return $(`//*[@id="goods-table"]/div[${n}]//a`);
+    getGoodFromResultsByIndex(index) {
+        return $(`//*[@id="goods-table"]/div[${index}]//a`);
     }
 
-    async clickOnNthGoodFromResults(n) {
-        const good = await this.getNthGoodFromResults(n);
+    async clickOnGoodFromResultsByIndex(index) {
+        const good = await this.getGoodFromResultsByIndex(index);
         await good.waitForClickable();
         await good.click();
     }
 
-     async waitForAmountOfGoodsChange(initialAmountOfGoods) {
-        const elms = await this.allGoodsOnPage;
-        await browser.waitUntil(async function() {
-            const currentAmountOfGoods = elms.length;
-            return (await currentAmountOfGoods !== initialAmountOfGoods);
-        })
-    }
-
-    async clickOnShowResultsButton() {
+    async applySelectedFilters() {
         const initialAmountOfGoods = await this.allGoodsOnPage.length;
         await this.showResultsButton.waitForClickable();
         await this.showResultsButton.click();
-        await this.waitForAmountOfGoodsChange(initialAmountOfGoods);
-    }
+        await this.waitForAmountOfGoodsChange(initialAmountOfGoods, this.allGoodsOnPage);
+     }
 
     async clickOnYearOfReleaseCheckbox(year) {
-        const yearOfReleaseFilter = this.getYearOfReleaseCheckbox(year); 
+        const yearOfReleaseFilter = await this.getYearOfReleaseCheckbox(year); 
         await yearOfReleaseFilter.waitForClickable();
         await yearOfReleaseFilter.click();
-    }
-
-    async clickOnBelarussianCheckbox() {
-        await this.onBelarussianCheckbox.waitForClickable();
-        await this.onBelarussianCheckbox.click();
-    }
-
-    async clickOnEnglishCategoryCheckbox() {
-        await this.englishCategoryCheckbox.waitForClickable();
-        await this.englishCategoryCheckbox.click();
     }
 }
 

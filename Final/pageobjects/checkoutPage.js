@@ -1,16 +1,16 @@
 const BasePage = require('./basePage');
 
 class CheckoutPage extends BasePage {
-    getNthCartItemName(n) {
-        return $(`//*[@id="goods-block"]/tbody/tr[${n+1}]//a[@class="goods-table-cell__line goods-table-cell__line_title"]`);
+    getCartItemNameByIndex(index) {
+        return $(`//*[@id="goods-block"]/tbody/tr[${index+1}]//a[@class="goods-table-cell__line goods-table-cell__line_title"]`);
     }
 
     get emptyCartNotification() {
         return $('#top-page div.i-textual__plain');
     }
 
-    getNthItem(n) {
-        return $(`//*[@id="goods-block"]/tbody/tr[${n+1}]`);
+    getItemByIndex(index) {
+        return $(`//*[@id="goods-block"]/tbody/tr[${index+1}]`);
     }
 
     get selectAllItems() {
@@ -25,27 +25,23 @@ class CheckoutPage extends BasePage {
         return $('#goods-block  button.remove-yes');
     }
 
-    getNthItemCheckbox(n) {
-        return $(`//*[@id="goods-block"]/tbody/tr[${n+1}]//span[@class="i-checkbox i-checkbox_large"]`);
+    get allGoodsInCart() {
+        return $$('//*[@id="goods-block"]/tbody[@class="goods-table__body"]/tr');
     }
 
-    async checkSelectAllItems() {
-        await this.selectAllItems.waitForClickable();
-        await this.selectAllItems.click();
+    getItemCheckboxByIndex(index) {
+        return $(`//*[@id="goods-block"]/tbody/tr[${index+1}]//span[@class="i-checkbox i-checkbox_large"]`);
     }
 
-    async clickOnRemoveItemsButton() {
-        await this.removeItemsButton.waitForClickable();
-        await this.removeItemsButton.click();
+    async confirmRemovementFromCart() {
+        const initialAmountOfGoods = await this.allGoodsInCart.length;
+        await this.clickOnElement(this.removeItemsButton);
+        await this.clickOnElement(this.confirmRemoveItemsButton);
+        await this.waitForAmountOfGoodsChange(initialAmountOfGoods, this.allGoodsInCart);
     }
 
-    async clickOnConfirmRemoveItemsButton() {
-        await this.confirmRemoveItemsButton.waitForClickable();
-        await this.confirmRemoveItemsButton.click();
-    }
-
-    async clickOnNthItemCheckbox(n) {
-        const item = await this.getNthItemCheckbox(n);
+    async clickOnItemCheckboxByIndex(index) {
+        const item = await this.getItemCheckboxByIndex(index);
         await item.waitForClickable();
         await item.click();
     }

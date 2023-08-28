@@ -1,6 +1,6 @@
-class TopPanel {
-    // //*[@id="top-page"]/div[@class="top-panel page-init-scroll"]
+const BasePage = require("../basePage");
 
+class TopPanel extends BasePage{
     get loginButton() {
         return $('//*[@id="top-page"]//*[@class="top-panel__userbar__auth"]');
     }
@@ -23,31 +23,6 @@ class TopPanel {
 
     get profileButton() {
         return $('//*[@class="top-panel__userbar__user__name__inner"]/ancestor::a');
-    }
-
-    async clickOnProfileButton() {
-        await this.profileButton.waitForClickable();
-        await this.profileButton.click();
-    }
-
-    async clickOnCartButton() {
-        await this.cartButton.waitForClickable();
-        await this.cartButton.click();
-    }
-
-    async clickSearchButton() {
-        await this.searchButton.waitForClickable();
-        await this.searchButton.click();
-    }
-
-    async sendTextToSearchField(searchQuery) {
-        await this.searchField.waitForClickable();
-        await this.searchField.addValue(searchQuery);
-    }
-
-    async clickLoginButton() {
-        await this.loginButton.waitForClickable();
-        await this.loginButton.click();
     }
 }
 

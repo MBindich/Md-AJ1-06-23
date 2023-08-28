@@ -13,37 +13,32 @@ describe('oz.by login tests', function () {
     })
 
     it('Should get correct notification if wrong email sent', async () => {
-        await topPanel.clickLoginButton();
-        await loginPopup.loginByEMail('a@a.a', 'a');
-        await loginPopup.loginFormErrorNotification.waitForDisplayed();
+        await topPanel.clickOnElement(topPanel.loginButton);
+        await loginPopup.loginByEMail('a@a.a', 'a', false);
         expect(await loginPopup.loginFormErrorNotification.getText()).to.equal('Введите корректный адрес электронной почты');
     })
 
     it('Should get correct notification if wrong password sent', async () => {
-        await topPanel.clickLoginButton();
-        await loginPopup.loginByEMail(mail, 'a');
-        await loginPopup.loginFormErrorNotification.waitForDisplayed();
+        await topPanel.clickOnElement(topPanel.loginButton);
+        await loginPopup.loginByEMail(mail, 'a', false);
         expect(await loginPopup.loginFormErrorNotification.getText()).to.equal('Неверный пароль. Если вы потеряли или забыли пароль — восстановите его');
     })
 
     it('Should get correct notification if no phone number sent', async () => {
-        await topPanel.clickLoginButton();
-        await loginPopup.loginByPhone('');
-        await loginPopup.phoneFormErrorNotification.waitForDisplayed();
+        await topPanel.clickOnElement(topPanel.loginButton);
+        await loginPopup.loginByPhone('', false);
         expect(await loginPopup.phoneFormErrorNotification.getText()).to.equal('Введите номер мобильного телефона белорусских опереторов');
     })
 
     it('Should succesfully login with correct credentials', async () => {
-        await topPanel.clickLoginButton();
+        await topPanel.clickOnElement(topPanel.loginButton);
         await loginPopup.loginByEMail(mail, psw);
-        await topPanel.username.waitForDisplayed()
         expect (await topPanel.username.isDisplayed()).to.equal(true);
     })
 
     it('Should logout correctly', async() => {
-        await topPanel.clickOnProfileButton();
-        await profilePage.clickOnExitButton();
-        await topPanel.loginButton.waitForDisplayed();
+        await topPanel.clickOnElement(topPanel.profileButton);
+        await profilePage.clickOnElement(profilePage.exitButton);
         expect(await topPanel.loginButton.isDisplayed()).to.equal(true);
     })
 })

@@ -12,23 +12,11 @@ class MainPage extends BasePage {
     get foreignLanguagesButton() {
         return $('//*[@id="top-page"]//a[@href="https://oz.by/selfstudytonguebooks/"]');
     }
-
-    async clickOnForeignLanguagesButton() {
-        await this.foreignLanguagesButton.waitForClickable();
-        await this.foreignLanguagesButton.click();
-    }
-
-    async clickOnMainMenuBooksButton() {
-        await this.mainMenuBooksButton.waitForClickable();
-        await this.mainMenuBooksButton.click();
-    }
-
+    
     async moveToMainMenuBooksButton() {
         await this.mainMenuBooksButton.waitForClickable();
         await this.mainMenuBooksButton.moveTo();
     }
-
-    
 }
 
 module.exports = new MainPage;

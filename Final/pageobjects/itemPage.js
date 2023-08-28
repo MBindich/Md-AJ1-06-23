@@ -28,11 +28,6 @@ class ItemPage extends BasePage {
         await year.waitForDisplayed();
         return year.getText();
     }
-
-    async clickOnAddToCartButton() {
-        await this.addToCartButton.waitForClickable();
-        await this.addToCartButton.click();
-    }
 }
 
 module.exports = new ItemPage;

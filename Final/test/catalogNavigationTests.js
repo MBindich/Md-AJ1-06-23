@@ -9,13 +9,13 @@ describe('oz.by catalog navigation tests', function () {
     })
 
     it('Should correctly navigate to filtered item', async () => {
-        await mainPage.moveToMainMenuBooksButton();
-        await mainPage.clickOnForeignLanguagesButton();
+        await mainPage.moveToElement(mainPage.mainMenuBooksButton);
+        await mainPage.clickOnElement(mainPage.foreignLanguagesButton);
         await categoryResultsPage.clickOnYearOfReleaseCheckbox(2021);
-        await categoryResultsPage.clickOnBelarussianCheckbox();
-        await categoryResultsPage.clickOnEnglishCategoryCheckbox();
-        await categoryResultsPage.clickOnShowResultsButton();
-        await categoryResultsPage.clickOnNthGoodFromResults(1);
+        await categoryResultsPage.clickOnElement(categoryResultsPage.onBelarussianCheckbox);
+        await categoryResultsPage.clickOnElement(categoryResultsPage.englishCategoryCheckbox);
+        await categoryResultsPage.applySelectedFilters();
+        await categoryResultsPage.clickOnGoodFromResultsByIndex(1);
         expect(await itemPage.getLanguageOfBook()).to.equal("Английский") && expect(await itemPage.getYearOfRelease()).to.equal('2021')
     })
 })

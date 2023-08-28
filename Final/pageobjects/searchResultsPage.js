@@ -1,14 +1,14 @@
 const BasePage = require('./basePage');
 
 class SearchResultsPage extends BasePage {
-    getNthSearchResult(numberOfResult) {
-        return $(`//*[@id="goods-table"]/div[${numberOfResult}]`);
+    getSearchResultByIndex(IndexOfResult) {
+        return $(`//*[@id="goods-table"]/div[${IndexOfResult}]`);
     }
 
-    async clickOnNthSearchResult(numberOfResult) {
-        const nthSearchResult = await this.getNthSearchResult(numberOfResult);
-        nthSearchResult.waitForClickable();
-        await nthSearchResult.click();
+    async clickOnSearchResultByIndex(IndexOfResult) {
+        const SearchResultByIndex = await this.getSearchResultByIndex(IndexOfResult);
+        await SearchResultByIndex.waitForClickable();
+        await SearchResultByIndex.click();
     }
 }
 

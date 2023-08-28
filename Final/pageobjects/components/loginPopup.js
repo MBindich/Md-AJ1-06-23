@@ -1,6 +1,8 @@
-class LoginPopup {
-    // //*[@id="auth-overlay"]//div[@class="i-popup-login"]
-    
+const BasePage = require("../basePage");
+const mainPage = require("../mainPage");
+const topPanel = require("./topPanel");
+
+class LoginPopup extends BasePage{
     get loginByPhoneButton() {
         return $('//*[@id="loginFormLoginPhoneLink"]');
     }
@@ -37,47 +39,36 @@ class LoginPopup {
         return $('//*[@id="phoneForm"]//div[@class="i-popover__line"]');
     }
 
-    async clickSendSMSButton() {
-        await this.sendSMSButton.waitForClickable();
-        await this.sendSMSButton.click();
+    async loginByMailHelper(mail, password) {
+        await mainPage.navigate('https://oz.by/');
+        await topPanel.clickOnElement(topPanel.loginButton);
+        await this.loginByEMail(mail, password);
+        return;
     }
 
-    async clickLoginButton() {
-        await this.loginButton.waitForClickable();
-        await this.loginButton.click();
+    async loginByPhone(phoneNumber, isLoggedInExpected = true) {
+        await this.clickOnElement(this.loginByPhoneButton);
+        await this.sendTextToElement(this.phoneNumberInputField, phoneNumber);
+        await this.clickOnElement(this.sendSMSButton);
+        if (isLoggedInExpected) {
+            //Unable to do because manual actions are required
+        }
+        else {
+            await this.phoneFormErrorNotification.waitForDisplayed();
+        }
     }
 
-    async sendTextToEmailInput(email) {
-        await this.emailInputField.waitForClickable();
-        await this.emailInputField.addValue(email);
-    }
-
-    async sendTextToPasswordInput(password) {
-        await this.passwordInputField.waitForClickable();
-        await this.passwordInputField.addValue(password);
-    }
-
-    async clickLoginByPhoneButton() {
-        await this.loginByPhoneButton.waitForClickable();
-        await this.loginByPhoneButton.click();
-    }
-
-    async clickLoginByMailButton() {
-        await this.loginByEMailButton.waitForClickable();
-        await this.loginByEMailButton.click();
-    }
-
-    async loginByPhone(phoneNumber) {
-        await this.clickLoginByPhoneButton();
-        await this.phoneNumberInputField.addValue(phoneNumber);
-        await this.clickSendSMSButton();
-    }
-
-    async loginByEMail(mail, password) {
-        await this.clickLoginByMailButton();
-        await this.sendTextToEmailInput(mail);
-        await this.sendTextToPasswordInput(password);
-        await this.clickLoginButton();
+    async loginByEMail(mail, password, isLoggedInExpected = true) {
+        await this.clickOnElement(this.loginByEMailButton);
+        await this.sendTextToElement(this.emailInputField, mail);
+        await this.sendTextToElement(this.passwordInputField, password);
+        await this.clickOnElement(this.loginButton);
+        if (isLoggedInExpected) {
+            await topPanel.username.waitForDisplayed();
+        }
+        else {
+            await this.loginFormErrorNotification.waitForDisplayed();
+        }
     }
 }
 
