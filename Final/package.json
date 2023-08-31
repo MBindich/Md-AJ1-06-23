@@ -22,7 +22,7 @@
     "@wdio/mocha-framework": "^8.13.13",
     "@wdio/spec-reporter": "^8.12.2",
     "allure-commandline": "^2.23.1",
-    "chromedriver": "^115.0.0",
+    "chromedriver": "^116.0.0",
     "eslint": "^8.43.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-base": "^15.0.0",
